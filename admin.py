@@ -45,21 +45,26 @@ while True:
                             print(
                                 "cr = create a page\ne = edit page\no = open page\ncp = copy content of page")
                             fileact = (input("Enter action to perform : "))
+                            # adding file
                             if fileact == "cr":
                                 file_name = (input("Enter page name : "))
                                 content = (input("Enter Content :"))
                                 with open(f"files/{book_name}/{file_name}.txt", "w") as file:
                                     file.write(content)
+                                    # editing file
                             elif fileact == "e":
                                 file_name = (input("Enter page name : "))
                                 content = (input("Enter Content :"))
                                 with open(f"files/{book_name}/{file_name}.txt", "a") as file:
                                     file.write(content)
+                                    # reading file
                             elif fileact == "o":
-                                read = input("enter page name to view : ")
+                                read = input("enter page name to view: ")
                                 readFile = f"files/{book_name}/{read}.txt"
-                                for line in readFile:
-                                    print(line.strip())
+                                with open(readFile, "r") as f:
+                                    content = f.read()
+                                    print(content)
+
                             elif fileact == "rm":
                                 while True:
                                     is_exit = input("Are you want to exit write" +
@@ -94,12 +99,14 @@ while True:
                                         "Enter Page name to remove : ")
                                     path = f"files/{rmPage}/{rmPage2}"
                                     os.remove(path)
-                        elif removePage == "o" :
-                            book_n = input("enter book name : ")
-                            read = input("enter page name to view : ")
+                        elif removePage == "o":
+                            book_n = input("enter book name: ")
+                            read = input("enter page name to view: ")
                             readFile = f"files/{book_n}/{read}.txt"
-                            for line in readFile:
-                                print(line.strip())
+                            with open(readFile, "r") as f:
+                                content = f.read()
+                                print(content)
+
                         is_exit = input("Are you want to exit write" +
                                         "\033[1m" + " out" + "\033[0m" + ": ")
                         if is_exit == "out":
@@ -151,7 +158,3 @@ while True:
                 print("-------------------------------------------------------------")
     else:
         print("Too many attempts")
-
-    # content = (input("Enter Content :"))
-    # with open("files/" + book_name, "w") as file :
-    # file.write(content)
