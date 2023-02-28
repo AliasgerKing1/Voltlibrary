@@ -1,8 +1,11 @@
 import os
+import time
 while True:
     print("Login Authentication")
-    valid_id = "AliasgerB"
-    valid_pass = "-A1li@sge3939"
+    valid_id = "a"
+    # AliasgerB
+    valid_pass = "b"
+    # -A1li@sge3939
     lim = 3
     auth = False
     while lim != 0:
@@ -20,6 +23,8 @@ while True:
             print('Incorrect Username.')
             lim -= 1
             continue
+
+    os.system("cls")
     if auth:
         print("This is the list of all Admin tools")
         print("1 = create a book\n2 = view all books")
@@ -130,6 +135,7 @@ while True:
                             except Exception as e:
                                 print(
                                     f"Error reading file: {page_with_path} - {e}")
+                    os.system("cls")
             if diract == "r":
                 rmBook_name = (input("Enter book name : "))
                 delpath = f"files/{rmBook_name}"
@@ -153,8 +159,16 @@ while True:
                         os.rmdir(f"files/{mlutiRemove}")
         if tool == 2 :
             lst = os.listdir("files")
-            for i in lst :
-                print(i)
-                print("-------------------------------------------------------------")
+            typing_speed = 10
+# Iterate over each file name and print each letter separately with a typing effect
+            for file_name in lst:
+                for word in file_name.split(".")[0]:
+                    for letter in word:
+                        print(letter, end="", flush=True)
+                        time.sleep(1 / typing_speed)
+                    print("", end="", flush=True)
+                    time.sleep(3 / typing_speed)
+                print("\n-------------------------------------------------------------", flush=True)
+                time.sleep(5 / typing_speed)
     else:
         print("Too many attempts")
